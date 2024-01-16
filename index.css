@@ -19,6 +19,7 @@ input {
   border: none;
   font-size: 1.5rem;
   margin: auto;
+  overflow: hidden ;
   border-bottom: 4px solid rgb(36, 127, 201);
 }
 input:focus{
@@ -56,9 +57,6 @@ input:focus{
 .mail{
 color: rgb(207, 42, 70);
 }
-.first {
-   background-color: aqua ;
-}
 .container-name{
   margin-top: 5px;
   display: block;
@@ -70,10 +68,11 @@ color: rgb(207, 42, 70);
 }
 .display-items{
   margin-left: 5px;
-border-radius: 20px;
+  margin-right:10px;
+border-radius: 50px;
 border: 2px solid black;
-padding: 10px;
-height: inherit;
+display: flex;
+flex:0;
 }
 .display-items img{
   border-radius: 50%;
@@ -81,29 +80,40 @@ height: inherit;
   width: 40px;
   height: 40px;
  position: relative;
- top:15px;
+
  left:-15px;
+ margin-right: 10px;
 }
 .name{
-  margin: 10px;
+  margin-top: 10px;
+  margin-right: 10px;
+  display: inline-block;
 }
 .mail{
-  margin: 10px;
+  margin-top: 10px;
+  margin-right: 10px;
+  display: inline-block;
 }
 .delete{
+  display: inline-block;
   font-weight: 600;
+  margin-top: 5px;
+  margin-right: 10px;
   color: red;
   
   font-size: 25px;
 }
 .display{
   margin-left: 60px;
-  display: inline-block;
-  height: 40px;
   position: relative;
+  padding: 10px;
   top: -70px;
   left:-50px;
+  display: inline-flex ;
 }
 .first{
   background-color: lightgrey;
+}
+.display-items:last-of-type {
+  background-color: lightblue;
 }

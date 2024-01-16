@@ -1,6 +1,7 @@
 import './App.css';
 import {useEffect, useState , useRef} from 'react' ;
 function App() {
+  const[ last , setlast ] = useState(false) ;
 const[ check , setcheck ] = useState(false) ;
 const[ back , setback ] = useState(false) ;
 const[ change , setChange] = useState("") ;  
@@ -40,15 +41,19 @@ useEffect(() => {
  if( change.length == 0)
   {  setcheck(false) ;
     const w = reference.current.offsetWidth + 15;
+    const h = reference.current.offsetHeight + 15;
 setpad(w) ;
+setlast(h);
   }
   
   setfirstitem(true) ;
 } , [change])
 
 useEffect(() => {
-    const w = reference.current.offsetWidth + 15;
+  const w = reference.current.offsetWidth + 15;
+  const h = reference.current.offsetHeight + 15;
 setpad(w) ;
+setlast(h);
 setback(false);
 
 } , [back == true])
@@ -57,13 +62,17 @@ setdisplay( (prev) => [...prev,obj]) ;
 setChange("");
 }
 function handlebackspace(e , obj) {
+  
   if( e.key === 'Backspace' && e.target.value === '') {
-    let index = display.length - 1 ;
     setdisplay((prev) => prev.slice(0,-1)) ;
    }
    setback(true) ;
    if( e.key === "Enter"){
-    setdisplay( (prev) => [...prev,obj]) ;
+     if( obj.length == 0 ) {
+      alert('There is no Such Data Present') ;
+      return ;
+     }  
+    setdisplay( (prev) => [...prev,obj[0]]) ;
   setChange("");
    }
 }
@@ -73,7 +82,7 @@ function handledelete(index) {
 }
   return (
     <>
-    <input type ="text" onChange={(e) => manageinput(e) } value = {change} style ={{paddingLeft:pad , width:"100%"}} onKeyDown={(e)=>handlebackspace(e , container.filter((val ,index) => val.name.toLowerCase().includes(change.toLowerCase()))[0])}  />
+    <input type ="text" onChange={(e) => manageinput(e) } value = {change} style ={{paddingLeft:pad , width:"100%" }} onKeyDown={(e)=>handlebackspace(e , container.filter((val ,index) => val.name.toLowerCase().includes(change.toLowerCase())))}  />
    <div className='display' ref ={reference}>
     {
       display.map((obj ,index) =>{ 
@@ -101,7 +110,7 @@ function handledelete(index) {
         }):setcheck(false)
         
        }
-       </div> : ''}
+       </div> :''}
 </>
  )
   }
